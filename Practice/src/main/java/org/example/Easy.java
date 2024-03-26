@@ -82,17 +82,28 @@ class Problem8 {
         }
     }
 }
-//Problem 9:  Write a program to calculate the factorial of a number.
+//Problem 9:  Write a program to calculate the factorial of a number without recursion.
 class Problem9 {
     public static int calculateFactorial(int i) {
-        if (i == 1) return 1;
-        return i * calculateFactorial(i-1);
+        int ans = 1;
+        for (int j = 1; j <= i; j++) {
+            ans *= j;
+        }
+        return ans;
     }
 }
-//Problem 10: Write a program to generate the first 15 numbers of the Fibonacci Sequence.
+//Problem 10: Write a program to generate the first 15 numbers of the Fibonacci Sequence without recursion.
 class Problem10 {
     public static int fibonacci(int i) {
-        return i <= 0 ? 0 : i == 1 ? 1 : fibonacci(i-1) + fibonacci(i-2);
+        if (i == 0) return 0;
+        if (i == 1) return 1;
+        int[] fib = new int[i+1];
+        fib[0] = 0;
+        fib[1] = 1;
+        for (int j = 2; j <= i; j++) {
+            fib[j] = fib[j-1] + fib[j-2];
+        }
+        return fib[i];
     }
 }
 // Arrays and Input
@@ -109,9 +120,37 @@ class Problem11 {
 //Problem 12: Element Removal  Write a program that takes a list of numbers and a target value, and removes all occurrences of the target value from the list.
 class Problem12 {
     public static int[] removeElement(int[] a, int target) {
-
+        int count = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] == target) count++;
+        }
+        int[] ans = new int[a.length-count];
+        for (int i = 0, j = 0; i < a.length; i++) {
+            if (a[i] != target) {
+                ans[j] = a[i];
+                j++;
+            }
+        }
+        return ans;
     }
 }
-//Problem 13: Take User Input: Write a program that takes a name as input and prints "Hello, [name]!".
-//Problem 14: Write a program to find the maximum (or minimum) value in an array.
-//Problem 15: Write a program to calculate the average of the numbers in an array.
+//Problem 13: Write a program to find the maximum value in an array.
+class Problem13 {
+    public static int findMax(int[] a) {
+        int ans = 0;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] > ans) ans = a[i];
+        }
+        return ans;
+    }
+}
+//Problem 14: Write a program to calculate the average of the numbers in an array.
+class Problem14 {
+    public static double calculateAverage(int[] a) {
+        double ans = 0;
+        for (int j : a) {
+            ans += j;
+        }
+        return ans/a.length;
+    }
+}
